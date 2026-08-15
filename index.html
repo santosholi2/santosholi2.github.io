@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santosh Oli</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#0B0E14;
+    --surface:#12161F;
+    --surface-hover:#1A2029;
+    --border:#232A36;
+    --text:#E7ECF3;
+    --muted:#7C8798;
+    --accent:#5EEAD4;
+    --accent-dim:#2E5F5A;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html,body{
+    height:100%;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:24px;
+    background-image:
+      radial-gradient(circle at 20% 15%, rgba(94,234,212,0.06), transparent 40%),
+      radial-gradient(circle at 80% 85%, rgba(94,234,212,0.04), transparent 40%);
+  }
+
+  .card{
+    width:100%;
+    max-width:420px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .titlebar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 16px;
+    background:#0E1117;
+    border-bottom:1px solid var(--border);
+  }
+
+  .dot{width:10px;height:10px;border-radius:50%;}
+  .dot.red{background:#FF5F56;}
+  .dot.yellow{background:#FFBD2E;}
+  .dot.green{background:#27C93F;}
+
+  .titlebar span{
+    margin-left:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  .terminal{
+    padding:28px 24px 8px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  .prompt-line{
+    font-size:14px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .prompt-line .sym{color:var(--accent);}
+
+  .name{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    color:var(--text);
+    margin-bottom:2px;
+  }
+  .name .cursor{
+    display:inline-block;
+    width:9px;
+    height:22px;
+    background:var(--accent);
+    margin-left:4px;
+    vertical-align:-3px;
+    animation:blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{
+    0%,49%{opacity:1;}
+    50%,100%{opacity:0;}
+  }
+
+  .role{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    color:var(--accent);
+    margin-top:8px;
+    letter-spacing:0.01em;
+  }
+
+  .tagline{
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    color:var(--muted);
+    margin-top:10px;
+    margin-bottom:26px;
+  }
+
+  .links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:0 16px 24px;
+  }
+
+  .link-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    text-decoration:none;
+    color:var(--text);
+    transition:border-color .15s ease, background .15s ease, transform .15s ease;
+  }
+
+  .link-row:hover, .link-row:focus-visible{
+    border-color:var(--accent-dim);
+    background:var(--surface-hover);
+    transform:translateX(2px);
+    outline:none;
+  }
+
+  .icon{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+    color:var(--accent);
+  }
+
+  .link-text{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .link-cmd{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .link-cmd .sym{color:var(--accent);}
+
+  .link-label{
+    font-size:14px;
+    font-weight:500;
+    margin-top:2px;
+  }
+
+  .arrow{
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  footer{
+    text-align:center;
+    padding:16px 0 22px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:#3A4150;
+  }
+
+  button.link-row{
+    width:100%;
+    border:1px solid var(--border);
+    font:inherit;
+    cursor:pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{animation:none;opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="titlebar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <span>whoami</span>
+    </div>
+
+    <div class="terminal">
+      <div class="prompt-line"><span class="sym">$</span> whoami</div>
+      <div class="name">Er. Santosh Oli<span class="cursor"></span></div>
+      <div class="role">AI Engineer</div>
+      <div class="tagline">Find me across the web ↓</div>
+    </div>
+
+    <div class="links">
+      <a class="link-row" href="https://www.linkedin.com/in/santosh-oli2" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        <div class="link-text">
+          <div class="link-cmd"><span class="sym">$</span> open linkedin</div>
+          <div class="link-label">LinkedIn</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-row" href="https://github.com/santosholi2" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.19c0 4.49 2.87 8.3 6.84 9.64.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.61-3.37-1.19-3.37-1.19-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.33 1.1 2.9.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.13-4.56-5.02 0-1.11.39-2.02 1.03-2.73-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.04a9.4 9.4 0 0 1 5 0c1.9-1.31 2.75-1.04 2.75-1.04.55 1.41.2 2.46.1 2.72.64.71 1.03 1.62 1.03 2.73 0 3.9-2.34 4.76-4.57 5.01.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.19C22 6.58 17.52 2 12 2z"/></svg>
+        <div class="link-text">
+          <div class="link-cmd"><span class="sym">$</span> open github</div>
+          <div class="link-label">GitHub</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-row" href="https://www.instagram.com/santosh_oli_2?igsh=MXdyOHVscWFjYW14NA==" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <div class="link-text">
+          <div class="link-cmd"><span class="sym">$</span> open instagram</div>
+          <div class="link-label">Instagram</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-row" href="mailto:Santosholi752@gmail.com">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <div class="link-text">
+          <div class="link-cmd"><span class="sym">$</span> send mail</div>
+          <div class="link-label">Email</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-row" href="tel:+821064670534">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="link-text">
+          <div class="link-cmd"><span class="sym">$</span> call korea</div>
+          <div class="link-label">+82 010-6467-0534</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-row" href="tel:+9779769964167">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="link-text">
+          <div class="link-cmd"><span class="sym">$</span> call nepal</div>
+          <div class="link-label">+977 976-996-4167</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <button class="link-row" id="wechatRow" type="button" onclick="copyWeChat()">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8.6 3.6C4.3 3.6 1 6.4 1 9.9c0 2 1.1 3.8 2.9 5l-.7 2.1 2.4-1.2c.7.2 1.4.3 2.1.3h.2c-.1-.4-.2-.8-.2-1.2 0-3.4 3.3-6.2 7.4-6.2h.3c-.6-3.1-3.9-5.1-6.8-5.1zm-2.6 4.5c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1zm5.1 0c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1zM16 10.6c-3.6 0-6.5 2.4-6.5 5.4s2.9 5.4 6.5 5.4c.6 0 1.2-.1 1.8-.2l2 1-.6-1.8c1.5-1 2.5-2.6 2.5-4.4 0-3-2.9-5.4-6.5-5.4zm-2.2 3.4c.5 0 .8.4.8.8 0 .5-.4.8-.8.8-.5 0-.8-.4-.8-.8 0-.5.4-.8.8-.8zm4.4 0c.5 0 .8.4.8.8 0 .5-.4.8-.8.8-.5 0-.8-.4-.8-.8 0-.5.4-.8.8-.8z"/></svg>
+        <div class="link-text" style="text-align:left;">
+          <div class="link-cmd"><span class="sym">$</span> tap to copy id</div>
+          <div class="link-label" id="wechatLabel">WeChat — wxid_eyxka5noealj22</div>
+        </div>
+        <span class="arrow">⧉</span>
+      </button>
+    </div>
+
+    <footer>santosh_oli@web ~ %</footer>
+  </div>
+
+  <script>
+    function copyWeChat(){
+      const id = "wxid_eyxka5noealj22";
+      const label = document.getElementById('wechatLabel');
+      navigator.clipboard.writeText(id).then(function(){
+        const original = label.textContent;
+        label.textContent = "Copied! Paste in WeChat search";
+        setTimeout(function(){ label.textContent = original; }, 1800);
+      }).catch(function(){
+        label.textContent = "wxid_eyxka5noealj22 (copy manually)";
+      });
+    }
+  </script>
+</body>
+          </html>
